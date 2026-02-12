@@ -586,40 +586,49 @@
     </footer>
 
     <script>
-        // Обработка формы с интеграцией EmailJS
+        // ✅ ПРАВИЛЬНАЯ ОБРАБОТКА ФОРМЫ С emailjs.send()
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Проверка полей
+            // Получаем значения из формы
             const vin = document.getElementById('vin').value.trim();
             const part_name = document.getElementById('part_name').value.trim();
             const phone = document.getElementById('phone').value.trim();
             
+            // Валидация
             if (!vin || !part_name || !phone) {
                 alert('Пожалуйста, заполните все поля.');
                 return;
             }
             
-            // Показать сообщение о загрузке
+            // Показываем индикатор загрузки
             const submitBtn = this.querySelector('.btn');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Отправка...';
             submitBtn.disabled = true;
-            emailjs.sendForm(
-                'service_dp9xvpo',
-                'template_oagqsoe',
-                'bIfnz77enZSG10Jqb'
+            
+            // ✅ ИСПОЛЬЗУЕМ emailjs.send() вместо sendForm()
+            emailjs.send(
+                'service_dp9xvpo',      // Service ID
+                'template_oagqsoe',     // Template ID
+                {
+                    vin: vin,
+                    part_name: part_name,
+                    phone: phone
+                },
+                'bIfnz77enZSG10Jqb'     // Public Key
             )
             .then(function(response) {
-                console.log('Успешно отправлено!', response);
+                console.log('✅ Успешно отправлено!', response);
                 alert('✅ Ваш заказ успешно отправлен!\n\nМы свяжемся с вами в течение часа.');
                 document.getElementById('orderForm').reset();
             })
             .catch(function(error) {
-                console.error('Ошибка при отправке:', error);
+                console.error('❌ Ошибка при отправке:', error);
                 alert('❌ Произошла ошибка при отправке заказа.\nПожалуйста, попробуйте позже или позвоните нам напрямую:\n+7-927-358-87-00');
             })
             .finally(function() {
+                // Восстанавливаем кнопку
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
             });
@@ -627,4 +636,3 @@
     </script>
 </body>
 </html>
-
