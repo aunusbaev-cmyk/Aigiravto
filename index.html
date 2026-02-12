@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Айгиравто - Заказ автозапчастей</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         * {
@@ -24,9 +24,10 @@
         /* Стиль для героевского раздела */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        radial-gradient(circle at 30% 30%, rgba(255,0,0,0.1) 0%, transparent 30%);
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), 
+                        url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -44,8 +45,8 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 10% 20%, rgba(255,0,0,0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255,0,0,0.05) 0%, transparent 20%);
+                radial-gradient(circle at 10% 20%, rgba(255,0,0,0.08) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(255,0,0,0.08) 0%, transparent 30%);
             pointer-events: none;
         }
         
@@ -53,14 +54,14 @@
             font-size: 5.5rem;
             font-weight: bold;
             margin: 10px 0;
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.9);
             letter-spacing: 2px;
             font-family: 'Courier New', monospace;
             color: #ff0000;
             text-decoration: underline;
             text-underline-offset: 10px;
             text-decoration-color: #ff0000;
-            text-decoration-thickness: 3px;
+            text-decoration-thickness: 4px;
         }
         
         .hero p {
@@ -68,6 +69,7 @@
             margin: 15px 0;
             font-weight: 300;
             color: #ccc;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
         
         .hero .locations {
@@ -76,6 +78,7 @@
             font-weight: 600;
             line-height: 1.3;
             color: #ff0000;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
         }
         
         .hero .delivery {
@@ -83,6 +86,7 @@
             margin: 25px 0;
             font-weight: 600;
             color: #ff0000;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
         }
         
         /* Стиль формы заказа */
@@ -96,7 +100,7 @@
             font-size: 2.8rem;
             margin-bottom: 40px;
             color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
             position: relative;
             display: inline-block;
         }
@@ -107,78 +111,101 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
+            width: 100px;
+            height: 4px;
             background: #ff0000;
+            border-radius: 2px;
         }
         
         .order-form {
             max-width: 600px;
             margin: 0 auto;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 10px;
+            background: rgba(10, 10, 10, 0.92);
+            padding: 45px;
+            border-radius: 15px;
             border: 1px solid #333;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .order-form::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #ff0000;
         }
         
         .form-group {
-            margin: 25px 0;
+            margin: 28px 0;
             text-align: left;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-            color: #aaa;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            color: #eee;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group label i {
+            color: #ff0000;
+            font-size: 1.6rem;
         }
         
         .form-control {
             width: 100%;
-            padding: 15px;
-            background: #000;
+            padding: 16px 20px;
+            background: #050505;
             color: #fff;
             border: 1px solid #444;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            border-bottom: 2px solid #ff0000;
+            border-radius: 8px;
+            font-size: 1.3rem;
+            transition: all 0.35s;
+            border-bottom: 3px solid #ff0000;
         }
         
         .form-control:focus {
             outline: none;
-            border-color: #ff0000;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+            border-color: #666;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+            background: #080808;
         }
         
         .btn {
             background: #ff0000;
             color: #fff;
             border: none;
-            padding: 16px 40px;
-            font-size: 1.4rem;
+            padding: 18px 40px;
+            font-size: 1.5rem;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s;
+            border-radius: 8px;
+            transition: all 0.35s;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 15px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(200, 0, 0, 0.4);
         }
         
         .btn:hover {
-            background: #cc0000;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+            background: #e60000;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 0, 0, 0.5);
         }
         
         .btn:active {
-            transform: translateY(0);
+            transform: translateY(1px);
         }
         
         .btn::after {
@@ -196,7 +223,7 @@
         
         .btn:hover::after {
             opacity: 1;
-            animation: shine 1.5s;
+            animation: shine 1.8s infinite;
         }
         
         @keyframes shine {
@@ -206,27 +233,32 @@
         }
         
         .form-note {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #999;
+            margin-top: 12px;
             text-align: left;
+            line-height: 1.5;
         }
         
         /* Стиль раздела СТО */
         .sto-section {
-            padding: 60px 20px;
-            background: #000;
+            padding: 70px 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95)), 
+                        url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
             text-align: center;
             border-top: 1px solid #333;
             border-bottom: 1px solid #333;
         }
         
         .sto-title {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: 2.6rem;
+            margin-bottom: 35px;
             color: #ff0000;
             position: relative;
             display: inline-block;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
         }
         
         .sto-title::after {
@@ -235,119 +267,153 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
+            width: 100px;
+            height: 4px;
             background: #ff0000;
+            border-radius: 2px;
         }
         
         .sto-content {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
-            font-size: 1.4rem;
-            line-height: 1.7;
+            font-size: 1.45rem;
+            line-height: 1.8;
+            background: rgba(10, 10, 10, 0.85);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #333;
         }
         
         .sto-content p {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
         
         .sto-highlights {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 40px;
+            gap: 35px;
+            margin-top: 45px;
         }
         
         .highlight {
-            background: rgba(255, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            width: 250px;
+            background: rgba(255, 0, 0, 0.12);
+            padding: 25px;
+            border-radius: 12px;
+            width: 280px;
             border: 1px solid #333;
-            transition: transform 0.3s;
+            transition: all 0.35s;
         }
         
         .highlight:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 0, 0, 0.15);
+            transform: translateY(-8px);
+            background: rgba(255, 0, 0, 0.18);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2);
         }
         
         .highlight h3 {
             color: #ff0000;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+            margin-bottom: 18px;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
         }
         
         /* Стиль футера */
         footer {
             background: #000;
-            padding: 50px 20px 30px;
+            padding: 60px 20px 40px;
             text-align: center;
             border-top: 1px solid #333;
         }
         
         .contact-info {
-            font-size: 1.8rem;
-            margin: 15px 0;
+            font-size: 1.9rem;
+            margin: 18px 0;
             line-height: 1.4;
         }
         
         .contact-info a {
             color: #fff;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.35s;
+            display: inline-block;
         }
         
         .contact-info a:hover {
             color: #ff0000;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            text-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+            transform: scale(1.05);
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin: 30px 0;
+            gap: 30px;
+            margin: 35px 0;
             flex-wrap: wrap;
         }
         
         .social-links a {
             color: #fff;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.35s;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: #111;
-            border: 1px solid #333;
+            border: 2px solid #333;
             position: relative;
             overflow: hidden;
         }
         
         .social-links a:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px) scale(1.1);
             background: #ff0000;
-            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+            border-color: #ff0000;
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5);
+        }
+        
+        .social-links a i {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .social-links a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.5s;
+        }
+        
+        .social-links a:hover::before {
+            left: 100%;
         }
         
         .address {
-            font-size: 1.5rem;
-            margin-top: 20px;
+            font-size: 1.6rem;
+            margin-top: 25px;
             color: #aaa;
             font-style: italic;
             border-top: 1px solid #333;
-            padding-top: 20px;
+            padding-top: 25px;
+            line-height: 1.6;
         }
         
         .copyright {
-            margin-top: 30px;
+            margin-top: 35px;
             color: #666;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
         
         /* Адаптивность */
@@ -373,14 +439,19 @@
             }
             
             .social-links a {
-                width: 50px;
-                height: 50px;
-                font-size: 1.8rem;
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
             }
             
             .highlight {
                 width: 100%;
-                max-width: 300px;
+                max-width: 320px;
+            }
+            
+            .sto-content {
+                font-size: 1.3rem;
+                padding: 20px;
             }
         }
         
@@ -406,7 +477,17 @@
             }
             
             .btn {
+                font-size: 1.3rem;
+                padding: 15px;
+            }
+            
+            .form-group label {
                 font-size: 1.2rem;
+            }
+            
+            .form-control {
+                font-size: 1.15rem;
+                padding: 14px 15px;
             }
         }
     </style>
@@ -417,12 +498,10 @@
         <h1>Айгиравто</h1>
         <p>Заказ автозапчастей</p>
         <div class="locations">
-            Баймак<br>
-            Сибай
+            Баймак • Сибай
         </div>
         <div class="delivery">
-            Срок от 1 часа<br>
-            Доставка
+            Срок от 1 часа • Доставка
         </div>
     </section>
 
@@ -431,17 +510,17 @@
         <h2 class="section-title">Закажите автозапчасть</h2>
         <form class="order-form" id="orderForm">
             <div class="form-group">
-                <label for="vin">VIN код автомобиля</label>
+                <label for="vin"><i class="fas fa-barcode"></i> VIN код автомобиля</label>
                 <input type="text" id="vin" name="vin" class="form-control" placeholder="Введите VIN код вашего автомобиля" required>
                 <p class="form-note">Введите полный 17-значный VIN-код вашего автомобиля для точного подбора запчасти</p>
             </div>
             <div class="form-group">
-                <label for="part_name">Название запчасти</label>
+                <label for="part_name"><i class="fas fa-cogs"></i> Название запчасти</label>
                 <input type="text" id="part_name" name="part_name" class="form-control" placeholder="Например: Тормозной диск, Радиатор, Фара и т.д." required>
                 <p class="form-note">Укажите точное название или артикул запчасти, которую хотите заказать</p>
             </div>
             <div class="form-group">
-                <label for="phone">Ваш номер телефона</label>
+                <label for="phone"><i class="fas fa-phone"></i> Ваш номер телефона</label>
                 <input type="tel" id="phone" name="phone" class="form-control" placeholder="+7 (999) 123-45-67" required>
                 <p class="form-note">Мы свяжемся с вами в течение 1 часа для подтверждения заказа</p>
             </div>
@@ -458,15 +537,15 @@
             
             <div class="sto-highlights">
                 <div class="highlight">
-                    <h3>Профессиональные мастера</h3>
+                    <h3><i class="fas fa-user-tie"></i> Профессиональные мастера</h3>
                     <p>Опытные специалисты с сертификатами, прошедшие обучение у ведущих автопроизводителей</p>
                 </div>
                 <div class="highlight">
-                    <h3>Гарантия на работы</h3>
+                    <h3><i class="fas fa-shield-alt"></i> Гарантия на работы</h3>
                     <p>На все установленные запчасти предоставляется гарантия от 6 месяцев</p>
                 </div>
                 <div class="highlight">
-                    <h3>Срочный ремонт</h3>
+                    <h3><i class="fas fa-bolt"></i> Срочный ремонт</h3>
                     <p>Срочные работы без записи - приезжайте и мы поможем вам в течение часа</p>
                 </div>
             </div>
@@ -476,10 +555,10 @@
     <!-- Футер -->
     <footer>
         <div class="contact-info">
-            <a href="tel:+79273588700">+7-927-358-87-00</a>
+            <a href="tel:+79273588700"><i class="fas fa-phone"></i> +7-927-358-87-00</a>
         </div>
         <div class="contact-info">
-            <a href="tel:+79050078575">+7-905-007-85-75</a>
+            <a href="tel:+79050078575"><i class="fas fa-phone"></i> +7-905-007-85-75</a>
         </div>
         
         <div class="social-links">
@@ -498,7 +577,7 @@
         </div>
         
         <div class="address">
-            г.Баймак ул.Муртазина д28
+            <i class="fas fa-map-marker-alt"></i> г.Баймак ул.Муртазина д28
         </div>
         
         <div class="copyright">
@@ -527,10 +606,12 @@
             submitBtn.textContent = 'Отправка...';
             submitBtn.disabled = true;
             
+            // Отправка через EmailJS с вашими данными
             emailjs.sendForm(
-                'service_dp9xvpo',      // ID вашего сервиса (например: service_abc123)
-                'template_oagqsoe',     // ID вашего шаблона (например: template_def456)
-                 'bIfnz77enZSG10Jqb'       // Ваш публичный ключ (начинается с 'd-')
+                'service_dp9xvpo',      // Ваш Service ID
+                'template_oagqsoe',     // Ваш Template ID
+                this,
+                'bIfnz77enZSG10Jqb'     // Ваш Public Key
             )
             .then(function(response) {
                 console.log('Успешно отправлено!', response);
@@ -549,4 +630,3 @@
     </script>
 </body>
 </html>
-
