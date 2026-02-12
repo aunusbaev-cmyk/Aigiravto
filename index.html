@@ -605,13 +605,11 @@
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Отправка...';
             submitBtn.disabled = true;
-            
-            // Отправка через EmailJS с вашими данными
+        
             emailjs.sendForm(
-                'service_dp9xvpo',      // Ваш Service ID
-                'template_oagqsoe',     // Ваш Template ID
-                this,
-                'bIfnz77enZSG10Jqb'     // Ваш Public Key
+                'service_dp9xvpo',
+                'template_oagqsoe',
+                'bIfnz77enZSG10Jqb'
             )
             .then(function(response) {
                 console.log('Успешно отправлено!', response);
@@ -630,3 +628,4 @@
     </script>
 </body>
 </html>
+
