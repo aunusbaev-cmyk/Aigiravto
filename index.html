@@ -422,13 +422,18 @@
         <h2 class="section-title">Закажите автозапчасть</h2>
         <form class="order-form" id="orderForm">
             <div class="form-group">
-                <label for="vin">VIN код автозапчасти</label>
-                <input type="text" id="vin" class="form-control" placeholder="Введите VIN код автозапчасти" required>
+                <label for="vin">VIN код автомобиля</label>
+                <input type="text" id="vin" name="vin" class="form-control" placeholder="Введите VIN код вашего автомобиля" required>
                 <p class="form-note">Введите полный VIN-код вашего автомобиля для точного подбора запчасти</p>
             </div>
             <div class="form-group">
+                <label for="part_name">Название запчасти</label>
+                <input type="text" id="part_name" name="part_name" class="form-control" placeholder="Например: Тормозной диск, Радиатор, Фара и т.д." required>
+                <p class="form-note">Укажите точное название или артикул запчасти, которую хотите заказать</p>
+            </div>
+            <div class="form-group">
                 <label for="phone">Ваш номер телефона</label>
-                <input type="tel" id="phone" class="form-control" placeholder="Введите ваш номер телефона" required>
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Введите ваш номер телефона" required>
             </div>
             <button type="submit" class="btn">Отправить заказ</button>
         </form>
@@ -493,9 +498,8 @@
 
     <script>
         // Инициализация EmailJS
-        // ВАЖНО: Замените 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', 'YOUR_USER_ID' на ваши данные из EmailJS
-        // emailjs.init("YOUR_USER_ID");
-        emailjs.init("YOUR_USER_ID"); // Замените YOUR_USER_ID на ваш ID из EmailJS
+        // ВАЖНО: Замените 'YOUR_USER_ID' на ваш User ID из аккаунта EmailJS
+        emailjs.init("YOUR_USER_ID");
 
         // Обработка формы
         document.getElementById('orderForm').addEventListener('submit', function(e) {
@@ -503,9 +507,10 @@
             
             // Проверка полей
             const vin = document.getElementById('vin').value;
+            const part_name = document.getElementById('part_name').value;
             const phone = document.getElementById('phone').value;
             
-            if (!vin || !phone) {
+            if (!vin || !part_name || !phone) {
                 alert('Пожалуйста, заполните все поля.');
                 return;
             }
