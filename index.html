@@ -562,10 +562,10 @@
         </div>
         
         <div class="social-links">
-            <a href="https://wa.me/79273588700" title="WhatsApp">
+            <a href="https://wa.me/79273588700" title="WhatsApp" target="_blank">
                 <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="https://t.me/aygiravto" title="Telegram">
+            <a href="https://t.me/ilnurabubakirov" title="Telegram" target="_blank">
                 <i class="fab fa-telegram"></i>
             </a>
             <a href="mailto:info@aygiravto.ru" title="Email">
@@ -605,7 +605,8 @@
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Отправка...';
             submitBtn.disabled = true;
-        
+            
+            // Отправка через EmailJS с вашими данными
             emailjs.sendForm(
                 'service_dp9xvpo',
                 'template_oagqsoe',
@@ -628,4 +629,3 @@
     </script>
 </body>
 </html>
-
