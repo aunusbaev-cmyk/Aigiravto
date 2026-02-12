@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Айгиравто - Заказ автозапчастей</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -24,7 +24,8 @@
         /* Стиль для героевского раздела */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23000000"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23333333" stroke-width="0.5"/></svg>');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        radial-gradient(circle at 30% 30%, rgba(255,0,0,0.1) 0%, transparent 30%);
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -42,8 +43,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M0,100 Q50,0 100,100 T200,100" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></svg>');
-            background-size: cover;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255,0,0,0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255,0,0,0.05) 0%, transparent 20%);
             pointer-events: none;
         }
         
@@ -51,13 +53,14 @@
             font-size: 5.5rem;
             font-weight: bold;
             margin: 10px 0;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
             letter-spacing: 2px;
             font-family: 'Courier New', monospace;
-            color: #ff0000; /* Красный цвет для названия */
+            color: #ff0000;
             text-decoration: underline;
             text-underline-offset: 10px;
             text-decoration-color: #ff0000;
+            text-decoration-thickness: 3px;
         }
         
         .hero p {
@@ -72,24 +75,14 @@
             margin: 25px 0;
             font-weight: 600;
             line-height: 1.3;
-            color: #ff0000; /* Красный цвет для локаций */
+            color: #ff0000;
         }
         
         .hero .delivery {
             font-size: 2.5rem;
             margin: 25px 0;
             font-weight: 600;
-            color: #ff0000; /* Красный цвет для доставки */
-        }
-        
-        .hero .speedometer {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 200px;
-            height: 200px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="none" stroke="%23333" stroke-width="2"/><path d="M100,10 L100,90" stroke="%23ff0000" stroke-width="2"/><path d="M100,100 L150,100" stroke="%23ff0000" stroke-width="2"/></svg>') no-repeat;
-            background-size: contain;
+            color: #ff0000;
         }
         
         /* Стиль формы заказа */
@@ -150,13 +143,14 @@
             border: 1px solid #444;
             border-radius: 5px;
             font-size: 1.2rem;
-            transition: border-color 0.3s;
-            border-bottom: 2px solid #ff0000; /* Красная нижняя линия */
+            transition: all 0.3s;
+            border-bottom: 2px solid #ff0000;
         }
         
         .form-control:focus {
             outline: none;
             border-color: #ff0000;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
         }
         
         .btn {
@@ -173,6 +167,8 @@
             margin-top: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
         
         .btn:hover {
@@ -183,6 +179,30 @@
         
         .btn:active {
             transform: translateY(0);
+        }
+        
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+        
+        .btn:hover::after {
+            opacity: 1;
+            animation: shine 1.5s;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-50%) rotate(30deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(50%) rotate(30deg); opacity: 0; }
         }
         
         .form-note {
@@ -245,6 +265,12 @@
             border-radius: 10px;
             width: 250px;
             border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+        
+        .highlight:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 0, 0, 0.15);
         }
         
         .highlight h3 {
@@ -275,6 +301,7 @@
         
         .contact-info a:hover {
             color: #ff0000;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
         
         .social-links {
@@ -304,29 +331,8 @@
         
         .social-links a:hover {
             transform: translateY(-5px);
-            background: #333;
-        }
-        
-        .social-links a::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(30deg);
-            transition: all 0.6s;
-        }
-        
-        .social-links a:hover::before {
-            animation: shine 1.5s;
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-50%) rotate(30deg); }
-            50% { transform: translateX(50%) rotate(30deg); }
-            100% { transform: translateX(-50%) rotate(30deg); }
+            background: #ff0000;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
         }
         
         .address {
@@ -398,13 +404,16 @@
             .sto-content {
                 font-size: 1.2rem;
             }
+            
+            .btn {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Геройский раздел -->
     <section class="hero">
-        <div class="speedometer"></div>
         <h1>Айгиравто</h1>
         <p>Заказ автозапчастей</p>
         <div class="locations">
@@ -424,7 +433,7 @@
             <div class="form-group">
                 <label for="vin">VIN код автомобиля</label>
                 <input type="text" id="vin" name="vin" class="form-control" placeholder="Введите VIN код вашего автомобиля" required>
-                <p class="form-note">Введите полный VIN-код вашего автомобиля для точного подбора запчасти</p>
+                <p class="form-note">Введите полный 17-значный VIN-код вашего автомобиля для точного подбора запчасти</p>
             </div>
             <div class="form-group">
                 <label for="part_name">Название запчасти</label>
@@ -433,7 +442,8 @@
             </div>
             <div class="form-group">
                 <label for="phone">Ваш номер телефона</label>
-                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Введите ваш номер телефона" required>
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="+7 (999) 123-45-67" required>
+                <p class="form-note">Мы свяжемся с вами в течение 1 часа для подтверждения заказа</p>
             </div>
             <button type="submit" class="btn">Отправить заказ</button>
         </form>
@@ -443,7 +453,7 @@
     <section class="sto-section">
         <h2 class="sto-title">Наше собственное СТО</h2>
         <div class="sto-content">
-            <p>В "Айгиравто" работает собственное станция технического обслуживания, где мы не только продаем запчасти, но и осуществляем их установку.</p>
+            <p>В "Айгиравто" работает собственная станция технического обслуживания, где мы не только продаем запчасти, но и осуществляем их установку.</p>
             <p>Наши квалифицированные специалисты выполнят установку любой запчасти в кратчайшие сроки с гарантией качества.</p>
             
             <div class="sto-highlights">
@@ -497,33 +507,47 @@
     </footer>
 
     <script>
-        // Инициализация EmailJS
-        // ВАЖНО: Замените 'YOUR_USER_ID' на ваш User ID из аккаунта EmailJS
-        emailjs.init("YOUR_USER_ID");
-
-        // Обработка формы
+        // Обработка формы с интеграцией EmailJS
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Проверка полей
-            const vin = document.getElementById('vin').value;
-            const part_name = document.getElementById('part_name').value;
-            const phone = document.getElementById('phone').value;
+            const vin = document.getElementById('vin').value.trim();
+            const part_name = document.getElementById('part_name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
             
             if (!vin || !part_name || !phone) {
                 alert('Пожалуйста, заполните все поля.');
                 return;
             }
             
+            // Показать сообщение о загрузке
+            const submitBtn = this.querySelector('.btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Отправка...';
+            submitBtn.disabled = true;
+            
             // Отправка через EmailJS
-            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-                .then(function(response) {
-                    alert('Ваш заказ успешно отправлен!\n\nМы свяжемся с вами в течение часа.');
-                    document.getElementById('orderForm').reset();
-                }, function(error) {
-                    console.error('Ошибка при отправке:', error);
-                    alert('Произошла ошибка при отправке заказа. Пожалуйста, попробуйте позже или свяжитесь с нами напрямую.');
-                });
+            // ВАЖНО: Замените 'YOUR_PUBLIC_KEY' на ваш реальный публичный ключ из EmailJS
+            emailjs.sendForm(
+                'YOUR_SERVICE_ID',      // ID вашего сервиса (например: service_abc123)
+                'YOUR_TEMPLATE_ID',     // ID вашего шаблона (например: template_def456)
+                this,
+                'YOUR_PUBLIC_KEY'       // Ваш публичный ключ (начинается с 'd-')
+            )
+            .then(function(response) {
+                console.log('Успешно отправлено!', response);
+                alert('✅ Ваш заказ успешно отправлен!\n\nМы свяжемся с вами в течение часа.');
+                document.getElementById('orderForm').reset();
+            })
+            .catch(function(error) {
+                console.error('Ошибка при отправке:', error);
+                alert('❌ Произошла ошибка при отправке заказа.\nПожалуйста, попробуйте позже или позвоните нам напрямую:\n+7-927-358-87-00');
+            })
+            .finally(function() {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         });
     </script>
 </body>
