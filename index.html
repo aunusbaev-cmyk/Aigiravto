@@ -527,13 +527,10 @@
             submitBtn.textContent = 'Отправка...';
             submitBtn.disabled = true;
             
-            // Отправка через EmailJS
-            // ВАЖНО: Замените 'YOUR_PUBLIC_KEY' на ваш реальный публичный ключ из EmailJS
             emailjs.sendForm(
-                'YOUR_SERVICE_ID',      // ID вашего сервиса (например: service_abc123)
-                'YOUR_TEMPLATE_ID',     // ID вашего шаблона (например: template_def456)
-                this,
-                'YOUR_PUBLIC_KEY'       // Ваш публичный ключ (начинается с 'd-')
+                'service_dp9xvpo',      // ID вашего сервиса (например: service_abc123)
+                'template_oagqsoe',     // ID вашего шаблона (например: template_def456)
+                 'bIfnz77enZSG10Jqb'       // Ваш публичный ключ (начинается с 'd-')
             )
             .then(function(response) {
                 console.log('Успешно отправлено!', response);
@@ -552,3 +549,4 @@
     </script>
 </body>
 </html>
+
